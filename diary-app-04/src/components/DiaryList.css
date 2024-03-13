@@ -18,8 +18,8 @@
   padding-left: 20px;
   padding-right: 20px;
   cursor: pointer;
-  font-family: "Nanum Pen Script";
-  font-size: 18px;
+  /*font-family: "Nanum Pen Script";*/
+  font-size: 15px;
 }
 
 .DiaryList .menu_wrapper .right_col {
