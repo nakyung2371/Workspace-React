@@ -29,3 +29,7 @@
 .DiaryList .menu_wrapper .right_col button {
   width: 100%;
 }
+
+.right_col button {
+  background-color: rgba(255, 145, 149, 0.8);
+}

@@ -66,7 +66,7 @@ function reducer(state, action) {
 function App() {
 
     //상태를 처리하는 변수
-    const [data, dispatch] = useReducer(reducer, []);
+    const [data, dispatch] = useReducer(reducer, []);   //state도 쓰고 reducer도 사용 가능
 
     //useEffect 컴포넌트가 로드될 때 1번만 실행
     //컴포넌트가 처음 로드될 때 dispatch를 호출해서 data에 mockData의 값을 할당
@@ -80,7 +80,7 @@ function App() {
     );
 
     //하위 컴포넌트에서 요청하는 이벤트 처리: onCreate, onUpdate, onDelete
-    const onCreate = () => {
+    const onCreate = (data, content, emotionId) => {
 
     }
     const onUpdate = () => {
