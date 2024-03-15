@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, {useRef} from "react";
 
 //Routing 처리 라이브러리 import <- 요청 (/company) -> 컴포넌트를 연결
 //Routes, Route <- Controller 역할: 요청 -> View(컴포넌트) 연결
@@ -68,6 +68,9 @@ function App() {
     //상태를 처리하는 변수
     const [data, dispatch] = useReducer(reducer, []);   //state도 쓰고 reducer도 사용 가능
 
+    //useRef Hook을 사용해서 고유한 값을 생성 id 필드에 적용
+    const idRef = useRef(3);
+
     //useEffect 컴포넌트가 로드될 때 1번만 실행
     //컴포넌트가 처음 로드될 때 dispatch를 호출해서 data에 mockData의 값을 할당
     useEffect( () => {
@@ -80,7 +83,17 @@ function App() {
     );
 
     //하위 컴포넌트에서 요청하는 이벤트 처리: onCreate, onUpdate, onDelete
-    const onCreate = (data, content, emotionId) => {
+    //date: yyyy-mm-dd  -> TimeStamp 형식의 날짜 형식으로 변환
+    const onCreate = (date, content, emotionId) => {
+        dispatch({
+            type: "CREATE",
+            data: {
+                id: idRef.current++,
+                date: new Date(date).getTime(),
+                content: content,
+                emotionId: emotionId,
+            }
+        });
 
     }
     const onUpdate = () => {

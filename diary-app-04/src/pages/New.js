@@ -18,7 +18,7 @@ function New(props) {
         const {date, content, emotionId} = data;
 
         onCreate(date, content, emotionId);
-        //완료되면 해당 페이지로 이동
+        //완료되면 해당 페이지로 이동 - replace: 뒤로가기 방지
         navigate('/', {replace: true});
     }
 

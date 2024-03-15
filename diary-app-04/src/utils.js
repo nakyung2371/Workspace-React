@@ -47,17 +47,17 @@ export const emotionList = [
         id: 2,
         name: "좋음",
         img: getEmotionImgById(2),
-    },    
+    },
     {
         id: 3,
         name: "보통",
         img: getEmotionImgById(3),
-    },    
+    },
     {
         id: 4,
         name: "나쁨",
         img: getEmotionImgById(4),
-    },    
+    },
     {
         id: 5,
         name: "완전 나쁨",
@@ -65,3 +65,28 @@ export const emotionList = [
     },
 
 ]
+
+//날짜를 인풋 받아서 yyyy-mm-dd 형식으로 리턴 돌려주는 함수
+export const getFormattedDate = (targetDate) => {
+    //연도만 추출(yyyy)
+    let year = targetDate.getFullYear();
+
+    //월만 추출: 3 -> 03,  (2+1) 0월 -> +1
+    let month = targetDate.getMonth() + 1;
+
+    //일만 추출
+    let day = targetDate.getDay();
+
+    //month값이 10 이하일 경우 0을 붙여서 처리
+    if (month < 10) {
+        month = `0${month}`;
+    }
+
+    //day값이 10 이하일 경우 0을 붙여서 처리
+    if (day < 10) {
+        day = `0${day}`;
+    }
+
+    return `${year}-${month}-${day}`;
+
+}
