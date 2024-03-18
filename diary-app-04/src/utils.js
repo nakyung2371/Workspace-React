@@ -75,7 +75,7 @@ export const getFormattedDate = (targetDate) => {
     let month = targetDate.getMonth() + 1;
 
     //일만 추출
-    let day = targetDate.getDay();
+    let day = targetDate.getDate();
 
     //month값이 10 이하일 경우 0을 붙여서 처리
     if (month < 10) {
@@ -89,4 +89,31 @@ export const getFormattedDate = (targetDate) => {
 
     return `${year}-${month}-${day}`;
 
+}
+
+//함수: 해당 날짜를 TimeStamp 형식으로 인풋 받아서 해당 월의 시작일, 마지막일을 리턴
+export const getMonthRangeByDate = (date) => {
+
+    //년 월의 시작 날짜
+    const beginTimeStamp = new Date(
+        date.getFullYear(),     //yyyy
+        date.getMonth(),        //mm
+        1,                 //1일
+        0,                //0시
+        0,              //0분
+        0               //0초
+    );
+
+    //년 월의 마지막 날짜
+    const endTimeStamp = new Date(
+        date.getFullYear() ,                  //년도
+        date.getMonth() + 1,        //다음달 월
+        0,                               //0일
+        23,                             //23시
+        59,                            //59분
+        59                             //59초
+
+    );
+
+    return {beginTimeStamp, endTimeStamp};
 }

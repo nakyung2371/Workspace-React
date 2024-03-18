@@ -18,19 +18,19 @@ import {useReducer, useEffect} from "react";
 //mockData 가짜 데이터,
 const mockData = [
     {
-        id: "mock1",
+        id: 0,
         date: new Date().getTime() - 1,
         content: "mock1",
         emotionId: 1
     },
     {
-        id: "mock2",
+        id: 1,
         date: new Date().getTime() - 2,
         content: "mock2",
         emotionId: 2
     },
     {
-        id: "mock3",
+        id: 2,
         date: new Date().getTime() - 3,
         content: "mock3",
         emotionId: 3
@@ -60,6 +60,14 @@ function reducer(state, action) {
             return action.data;
         case "CREATE" :
             return [action.data, ...state];
+        case "DELETE" :
+            //state.filter(it)을 돌려서 action.targetId !== it.id를 새로운 배열에 담아서 리턴
+            //id.id 필드의 자료형(Number), action.targetId 필드의 자료형 (String)
+            return state.filter( (it) => String(it.id) !== String(action.targetId)
+            );
+        case "UPDATE" :
+            return state.map((it) => String(it.id) === String(action.data.id) ?
+                {...action.data} : it);
     }
 }
 
@@ -96,10 +104,28 @@ function App() {
         });
 
     }
-    const onUpdate = () => {
+    const onUpdate = (id, date, emotionId, content) => {
+        console.log(`업데이트 날짜: ${date}`)
+        console.log(`포맷 완료된 날짜: ${new Date(date).getTime()}`)
 
+        dispatch({
+            type: "UPDATE",
+            data: {
+                id: id,
+                date: new Date(date).getTime(),  //yyyy-mm-dd 형식을 TimeStemp 형식으로 변환
+                emotionId: emotionId,
+                content: content,
+            }
+        });
     }
-    const onDelete = () => {
+
+    const onDelete = (targetId) => {
+        // console.log(`하위에서 삭제 id: ${targetId}`)
+        dispatch({
+            type: 'DELETE',
+            // targetId: targetId,      <- 풀어서 사용
+            targetId,                   //축약 표현
+        } );
 
     }
     return (
