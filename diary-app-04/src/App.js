@@ -49,9 +49,9 @@ const mockData = [
     4. useReducer를 사용해서 context의 상태값을 변경함.
 */
 
-//1. Comtext 선언: 상태값 처리, 이벤트 처리
+//1. Context 선언: 상태값 처리, 이벤트 처리
 export const DiaryStateContext = React.createContext();     //상태값을 전송하는 context, 상태값 내려보냄
-export const DiaryDispatchContext = React.createContext();     //이벤트를 처리하는 context, 상태값 변경
+export const DiaryDispatchContext = React.createContext();  //이벤트를 처리하는 context, 상태값 변경
 
 //상태값을 변경하는 reducer 함수 정의
 function reducer(state, action) {
@@ -73,7 +73,7 @@ function reducer(state, action) {
 
 function App() {
 
-    //상태를 처리하는 변수
+    //상태를 처리하는 변수 reducer - 깔끔하게 코드 작성이 가능
     const [data, dispatch] = useReducer(reducer, []);   //state도 쓰고 reducer도 사용 가능
 
     //useRef Hook을 사용해서 고유한 값을 생성 id 필드에 적용
